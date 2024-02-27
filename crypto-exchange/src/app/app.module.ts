@@ -8,18 +8,20 @@ import { CryptoModule } from './crypto/crypto.module';
 import { LoginComponent } from './auth/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './common/nav/nav.component';
+import { ModalComponent } from './common/modal/modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
     CryptoModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

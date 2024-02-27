@@ -6,7 +6,7 @@ import { CalculatorComponent } from './crypto/calculator/calculator.component';
 import { ChartComponent } from './crypto/chart/chart.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/crypto-list', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
   { 
     path: 'crypto-list', component: CryptoListComponent,

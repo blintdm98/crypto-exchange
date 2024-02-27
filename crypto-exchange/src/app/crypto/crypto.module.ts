@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CryptoListComponent } from './crypto-list/crypto-list.component';
 import { ChartComponent } from './chart/chart.component';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { NavComponent } from '../common/nav/nav.component';
 
 
 
@@ -10,7 +11,8 @@ import { CalculatorComponent } from './calculator/calculator.component';
   declarations: [
     CryptoListComponent,
     ChartComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    NavComponent
   ],
   imports: [
     CommonModule
