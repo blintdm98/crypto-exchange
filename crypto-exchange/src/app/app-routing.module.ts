@@ -4,10 +4,12 @@ import { LoginComponent } from './auth/login/login.component';
 import { CryptoListComponent } from './crypto/crypto-list/crypto-list.component';
 import { CalculatorComponent } from './crypto/calculator/calculator.component';
 import { ChartComponent } from './crypto/chart/chart.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/crypto-list', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
+  { path: 'registration', component: RegistrationComponent},
   { 
     path: 'crypto-list', component: CryptoListComponent,
     children: [

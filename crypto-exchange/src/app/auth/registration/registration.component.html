@@ -1,0 +1,88 @@
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <h3 class="my-5">Customer registration form</h3>
+          <div class="my-5">
+            <form
+              [formGroup]="regForm"
+            >
+              <div *ngIf="email" class="form-floating my-2">
+                <input
+                  class="form-control"
+                  type="text"
+                  id="email"
+                  formControlName="email"
+                  placeholder="Enter email"
+                />
+                <label for="email">Email</label>
+                <div
+                  *ngIf="email.invalid && email.touched"
+                  class="small text-danger"
+                >
+                  A customer number is required.
+                </div>
+              </div>
+              <div *ngIf="name" class="form-floating my-2">
+                <input
+                  class="form-control"
+                  id="name"
+                  type="text"
+                  formControlName="name"
+                  placeholder="Enter your name..."
+                />
+                <label for="name">Name</label>
+                <div
+                  *ngIf="name.invalid && name.touched"
+                  class="small text-danger"
+                >
+                  A name is required.
+                </div>
+              </div>
+              <div *ngIf="password" class="form-floating my-2">
+                <input
+                  class="form-control"
+                  id="password"
+                  type="password"
+                  formControlName="password"
+                  placeholder="Enter your password..."
+                />
+                <label for="password">password</label>
+                <div
+                  *ngIf="password.invalid && password.touched"
+                  class="small text-danger"
+                >
+                  A password is required.
+                </div>
+              </div>
+              <div *ngIf="confirmPassword" class="form-floating my-2">
+                <input
+                  class="form-control"
+                  id="confirmPassword"
+                  type="password"
+                  formControlName="confirmPassword"
+                  placeholder="Enter your confirmPassword..."
+                />
+                <label for="confirmPassword">Confirm Password</label>
+                <div
+                  *ngIf="confirmPassword.invalid && confirmPassword.touched"
+                  class="small text-danger"
+                >
+                  A confirmPassword is required.
+                </div>
+              </div>
+              <!-- Submit Button-->
+              <button
+                class="btn btn-primary text-uppercase mt-2"
+                id="submitButton"
+                type="submit"
+                [disabled]="!regForm.valid"
+              >
+                {{ updateCustomerId ? 'Update' : 'Registrate' }}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
