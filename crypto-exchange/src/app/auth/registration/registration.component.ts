@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ParamMap, Router } from '@angular/router';
 import { RegModel } from 'src/app/common/models/reg.model';
 
@@ -14,22 +14,24 @@ export class RegistrationComponent {
   regModel?: RegModel;
 
   constructor(
-    // private customerService: CustomerService,
-    // private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
 
     this.regForm = new FormGroup({
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
       name: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [
-        Validators.required, 
-        // this.customConfirmPasswordValidator(),
+        Validators.required,
       ]),
-    });
+    },
+    this.confirmPasswordValidator
+    );
 
     // this.activatedRoute.paramMap.subscribe({
     //   next: (params: ParamMap) => {
@@ -59,15 +61,14 @@ export class RegistrationComponent {
     return this.regForm.get('confirmPassword');
   }
 
-  customConfirmPasswordValidator() {
-    const regFormtemp = this.regForm.value;
-    console.log(regFormtemp);
-    regFormtemp.password = this.regModel?.password;
-    return (control: AbstractControl) => {
-      return !control.value || control.value === regFormtemp.password  ? null : { passwordMismatch: true };
-    };
+  confirmPasswordValidator(
+    control: AbstractControl
+  ): ValidationErrors | null {
+    const pass = control.get('password')?.value;
+    const cPass = control.get('confirmPassword')?.value;
+  
+    return pass === cPass ? null : { PasswordsNotMatch: true };
   }
-
   // submitRegForm() {
   //   if (!this.customerRegForm.invalid) {
   //     const newCustumer: CustomerModel = this.customerRegForm.value;

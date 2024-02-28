@@ -65,10 +65,10 @@
                 />
                 <label for="confirmPassword">Confirm Password</label>
                 <div
-                  *ngIf="confirmPassword.invalid && confirmPassword.touched"
+                *ngIf="regForm?.errors?.['PasswordsNotMatch']"
                   class="small text-danger"
                 >
-                  A confirmPassword is required.
+                  no match
                 </div>
               </div>
               <!-- Submit Button-->
