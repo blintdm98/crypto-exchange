@@ -24,8 +24,15 @@ export class RegistrationComponent {
         Validators.required,
         Validators.email
       ]),
-      name: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(15)
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
       confirmPassword: new FormControl('', [
         Validators.required,
       ]),
