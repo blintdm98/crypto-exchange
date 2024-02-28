@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginModel } from 'src/app/common/models/login.model';
+import { RegModel } from 'src/app/common/models/reg.model';
 
 @Component({
   selector: 'app-login',
@@ -18,19 +20,40 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required]),
+      username: new FormControl('', [
+        Validators.required]),
+      password: new FormControl('', [
+        Validators.required
+      ]),
     });
   }
 
-  get email(): AbstractControl | null {
-    return this.loginForm.get('email');
+  get username() {
+    return this.loginForm.get('username');
   }
 
-  get password(): AbstractControl | null {
+  get password() {
     return this.loginForm.get('password');
   }
 
+  login() {
+    const storedUsers = JSON.parse(localStorage.getItem('allUsers')!) || [];
+    const userLogin: LoginModel = {
+      username: this.username?.value,
+      password: this.password?.value,
+    }
+
+    const existingUser = storedUsers.find((user:RegModel) => {
+      return user.name === userLogin.username && user.password === userLogin.password
+    })
+
+    if(existingUser) {
+      console.log('sikeres bejelentkezés');
+      this.router.navigate(['/crypto-list']);
+    } else {
+      console.log('sikertelen bejelentkezés');
+    }
+  }
   // public login() {
   //   this.authService.login(this.loginForm.value).subscribe();
   // }
@@ -45,9 +68,5 @@ export class LoginComponent {
   // public loginWithGoogle() {
   //   this.authService.loginWithGoogle();
   // }
-
-  navigateToCryptoList() {
-    this.router.navigate(['/crypto-list']);
-  }
 
 }

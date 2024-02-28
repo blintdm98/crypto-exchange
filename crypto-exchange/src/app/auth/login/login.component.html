@@ -1,17 +1,17 @@
 <main class="container-md mt-5">
     <form [formGroup]="loginForm">
-      <div *ngIf="email" class="form-floating">
+      <div *ngIf="username" class="form-floating">
         <input
-          formControlName="email"
+          formControlName="username"
           class="form-control"
-          id="email"
-          type="email"
+          id="username"
+          type="username"
           placeholder="Enter your email..."
         />
-        <label for="email">Email address</label>
-        <div *ngIf="email.invalid && email.touched" class="small text-danger">
-          <span *ngIf="email.touched">An email is required.</span>
-          <span *ngIf="email.invalid">Email is not valid.</span>
+        <label for="username">Username</label>
+        <div *ngIf="username.invalid && username.touched" class="small text-danger">
+          <span *ngIf="username.touched">An username is required.</span>
+          <span *ngIf="username.invalid">Username is not valid.</span>
         </div>
       </div>
   
@@ -38,7 +38,7 @@
         class="mx-3 btn btn-primary text-uppercase mt-2"
         id="loginButton"
         type="submit"
-        (click)="navigateToCryptoList()"
+        (click)="login()"
       >
         Login
       </button>

@@ -9,7 +9,7 @@ import { RegModel } from 'src/app/common/models/reg.model';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
-  updateCustomerId?: string;
+  updateEmail?: string;
   regForm!: FormGroup;
   regModel?: RegModel;
 
@@ -68,6 +68,41 @@ export class RegistrationComponent {
     return this.regForm.get('confirmPassword');
   }
 
+  saveUserToLocalStorage() {
+    const allUsersJson = localStorage.getItem('allUsers');
+    let allUsers: RegModel[] = [];
+
+    if(allUsersJson) {
+      console.log('alma');
+      allUsers = JSON.parse(allUsersJson);
+    }
+
+    const existingUser = allUsers.find(user => user.email === this.email?.value);
+
+    if(existingUser) {
+      this.updateEmail = existingUser.email;
+      console.log('user exist');
+      existingUser.email = this.email?.value;
+      existingUser.name = this.name?.value;
+      existingUser.password = this.password?.value;
+      existingUser.confirmPassword = this.confirmPassword?.value;
+
+      const updatedUserJson = JSON.stringify(existingUser);
+      localStorage.setItem('currentUser', updatedUserJson);
+    } else {
+      const user: RegModel = {
+        email: this.email?.value,
+        name: this.name?.value,
+        password: this.password?.value,
+        confirmPassword: this.confirmPassword?.value
+      }
+      allUsers.push(user);
+    }
+
+    localStorage.setItem('allUsers', JSON.stringify(allUsers));
+    this.router.navigate(['login']);
+  }
+
   confirmPasswordValidator(
     control: AbstractControl
   ): ValidationErrors | null {
@@ -76,6 +111,7 @@ export class RegistrationComponent {
   
     return pass === cPass ? null : { PasswordsNotMatch: true };
   }
+
   // submitRegForm() {
   //   if (!this.customerRegForm.invalid) {
   //     const newCustumer: CustomerModel = this.customerRegForm.value;
