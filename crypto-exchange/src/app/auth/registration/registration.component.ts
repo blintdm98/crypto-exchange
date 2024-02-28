@@ -73,7 +73,6 @@ export class RegistrationComponent {
     let allUsers: RegModel[] = [];
 
     if(allUsersJson) {
-      console.log('alma');
       allUsers = JSON.parse(allUsersJson);
     }
 
