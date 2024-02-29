@@ -64,3 +64,17 @@
     padding: 1rem;
     color: #fff;
 }
+
+.scroll-table {
+    max-height: 74vh;
+    overflow-y: auto;
+}
+
+.scroll-table::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scroll-table::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+}

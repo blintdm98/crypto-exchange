@@ -1,9 +1,7 @@
 export interface CryptoModel {
-    symbol_id: string;
-    asset_id_base: string;
-    asset_id_quote: string;
-    asset_id_quote_exchange: string;
-    price: number;
+    asset_id: string;
+    name: string;
+    price_usd: number;
 }
 
 export interface IconModel {
