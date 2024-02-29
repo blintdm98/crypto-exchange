@@ -1,0 +1,11 @@
+:host {
+    background-image: url('src/assets/images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0 !important;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
