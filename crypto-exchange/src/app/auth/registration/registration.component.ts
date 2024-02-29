@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ParamMap, Router } from '@angular/router';
+import { CryptoModel, cryptos } from 'src/app/common/models/crypto.model';
 import { RegModel } from 'src/app/common/models/reg.model';
 
 @Component({
@@ -93,7 +94,8 @@ export class RegistrationComponent {
         email: this.email?.value,
         name: this.name?.value,
         password: this.password?.value,
-        confirmPassword: this.confirmPassword?.value
+        confirmPassword: this.confirmPassword?.value,
+        cryptoList: cryptos
       }
       allUsers.push(user);
     }

@@ -37,60 +37,13 @@
                               </thead>
                               <!-- <tbody *ngFor="let crypto of cryptoList, index as i">
                                 <th>icon</th>
-                                <th>{{crypto.name}}</th>
+                                <th (click)="addCrypto(crypto)">{{crypto.name}}</th>
                                 <th>{{crypto.price_usd}}</th>
                               </tbody> -->
-                              <tbody>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
-                                <tr>alma</tr>
+                              <tbody *ngFor="let crypto of cryptoList">
+                                <th (click)="addCrypto(crypto)">{{crypto.asset_id}}</th>
+                                <th>{{crypto.name}}</th>
+                                <th>{{crypto.price_usd}}</th>
                               </tbody>
                             </table>
                           </div>

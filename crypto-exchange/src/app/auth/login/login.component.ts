@@ -49,6 +49,19 @@ export class LoginComponent {
 
     if(existingUser) {
       console.log('sikeres bejelentkezés');
+
+      const previousCryptos = existingUser.cryptoList;
+
+      const currentUser: RegModel = {
+        email: existingUser.email,
+        name: existingUser.name,
+        password: existingUser.password,
+        confirmPassword: existingUser.confirmPassword,
+        cryptoList: previousCryptos,
+      };
+
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
       this.router.navigate(['/crypto-list']);
     } else {
       console.log('sikertelen bejelentkezés');
