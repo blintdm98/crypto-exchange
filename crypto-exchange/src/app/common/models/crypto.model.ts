@@ -9,20 +9,20 @@ export interface IconModel {
     url: string;
 }
 
-export const cryptos: CryptoModel[] = [
-    {
-        asset_id: "USD1",
-        name: "Bitcoin",
-        price_usd: 20
-    },
-    {
-        asset_id: "USD2",
-        name: "ETH",
-        price_usd: 50
-    },
-    {
-        asset_id: "USD3",
-        name: "DOG",
-        price_usd: 30
-    }
-]
+// export const cryptos: CryptoModel[] = [
+//     {
+//         asset_id: "ENGT",
+//         name: "Bitcoin",
+//         price_usd: 20
+//     },
+//     {
+//         asset_id: "USD",
+//         name: "ETH",
+//         price_usd: 50
+//     },
+//     {
+//         asset_id: "ETH",
+//         name: "DOG",
+//         price_usd: 30
+//     }
+// ]

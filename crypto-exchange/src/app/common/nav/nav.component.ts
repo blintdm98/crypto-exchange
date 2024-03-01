@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Subscription, map } from 'rxjs';
-import { CryptoModel, cryptos } from '../models/crypto.model';
+import { CryptoModel} from '../models/crypto.model';
 import { CryptoService } from '../services/crypto.service';
 import { RegModel } from '../models/reg.model';
 import { Router } from '@angular/router';
@@ -83,24 +83,24 @@ export class NavComponent implements OnInit {
   openModal() {
     this.isModalOpen = true;
     this.renderer.setStyle(this.elRef.nativeElement.querySelector('.modal'), 'display', 'block');
-    // this.subCrypto = this.cryptoService.getCryptos().subscribe({
-    //   next: (cryptos: CryptoModel[]) => {
-    //     this.cryptoList = cryptos;
-    //     console.log(cryptos);
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //   },
-    //   complete: () => {
-    //     console.log('Crypto request is done');
-    //   }
-    // });
+    this.subCrypto = this.cryptoService.getCryptos().subscribe({
+      next: (cryptos: CryptoModel[]) => {
+        this.cryptoList = cryptos;
+        console.log(cryptos);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log('Crypto request is done');
+      }
+    });
 
     //*mock adatokhoz
-    for(const crypto of cryptos) {
-      this.cryptoList.push(crypto);
-      console.log(crypto);
-    }
+    // for(const crypto of cryptos) {
+    //   this.cryptoList.push(crypto);
+    //   console.log(crypto);
+    // }
   }
 
   closeModal() {
@@ -117,7 +117,6 @@ export class NavComponent implements OnInit {
 
       if(currentUser.cryptoList) {
         this.navList = [...currentUser.cryptoList];
-        console.log(this.navList)
       }
     }
   }

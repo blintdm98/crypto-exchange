@@ -19,8 +19,8 @@ export class CryptoService {
     private http: HttpClient
   ) { }
 
-  getCrypto(assetId:string): Observable<CryptoModel> {
-    return this.http.get<CryptoModel>(`${this.CRYPTO_BY_ASSET_URL}/${assetId}?apikey=${environment.apikey}`);
+  getCrypto(asset_id:string): Observable<CryptoModel> {
+    return this.http.get<CryptoModel>(`${this.CRYPTO_BY_ASSET_URL}/${asset_id}?apikey=${environment.apikey}`);
   }
 
   getCryptos(): Observable<CryptoModel[]> {

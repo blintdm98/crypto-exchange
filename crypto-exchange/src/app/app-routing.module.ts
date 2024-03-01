@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/crypto-list', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent},
-  { path: 'crypto-element/:assetId', component: CryptoElementComponent},
+  { path: 'crypto-element/:asset_id', component: CryptoElementComponent},
   { 
     path: 'crypto-list', component: CryptoListComponent,
   },

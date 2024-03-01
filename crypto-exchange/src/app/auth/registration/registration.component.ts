@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ParamMap, Router } from '@angular/router';
-import { CryptoModel, cryptos } from 'src/app/common/models/crypto.model';
+import { CryptoModel } from 'src/app/common/models/crypto.model';
 import { RegModel } from 'src/app/common/models/reg.model';
 
 @Component({
@@ -97,7 +97,7 @@ export class RegistrationComponent {
         confirmPassword: this.confirmPassword?.value,
         cryptoList: []
       }
-      const isNewUser = !allUsers.some(user => user.email === user.email);
+      const isNewUser = !allUsers.some(user => user.email !== user.email);
 
       if (isNewUser) {
         allUsers.push(user);
