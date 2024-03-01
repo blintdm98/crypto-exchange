@@ -19,5 +19,10 @@ export const cryptos: CryptoModel[] = [
         asset_id: "USD",
         name: "ETH",
         price_usd: 50
+    },
+    {
+        asset_id: "USD",
+        name: "DOG",
+        price_usd: 30
     }
 ]

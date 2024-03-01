@@ -77,7 +77,7 @@ export class RegistrationComponent {
       allUsers = JSON.parse(allUsersJson);
     }
 
-    const existingUser = allUsers.find(user => user.email === this.email?.value);
+    let existingUser = allUsers.find(user => user.email === this.email?.value);
 
     if(existingUser) {
       this.updateEmail = existingUser.email;
