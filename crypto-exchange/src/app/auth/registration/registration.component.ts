@@ -95,9 +95,13 @@ export class RegistrationComponent {
         name: this.name?.value,
         password: this.password?.value,
         confirmPassword: this.confirmPassword?.value,
-        cryptoList: cryptos
+        cryptoList: []
       }
-      allUsers.push(user);
+      const isNewUser = !allUsers.some(user => user.email === user.email);
+
+      if (isNewUser) {
+        allUsers.push(user);
+      }
     }
 
     localStorage.setItem('allUsers', JSON.stringify(allUsers));
