@@ -6,6 +6,7 @@ import { CalculatorComponent } from './calculator/calculator.component';
 import { NavComponent } from '../common/nav/nav.component';
 import { CryptoElementComponent } from './crypto-element/crypto-element.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 
 
@@ -19,7 +20,8 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HighchartsChartModule
   ]
 })
 export class CryptoModule { }

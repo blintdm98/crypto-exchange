@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as Highcharts from 'highcharts';
 
 @Component({
   selector: 'app-chart',
@@ -7,24 +8,12 @@ import { Component } from '@angular/core';
 })
 export class ChartComponent {
 
-  // view: any[] = [700, 400];
-  // colorScheme: Color = {
-  //   name: 'cool',
-  //   selectable: true,
-  //   group: ScaleType.Ordinal,
-  //   domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5']
-  // };
-  // gradient = false;
-  // showLegend = true;
-  // showXAxis = true;
-  // showYAxis = true;
-  // showXAxisLabel = true;
-  // showYAxisLabel = true;
-  // xAxisLabel = 'X Axis Label';
-  // yAxisLabel = 'Y Axis Label';
-
-  // onSelect(event: any) {
-  //   console.log(event);
-  // }
+  Highcharts: typeof Highcharts = Highcharts; // required
+  chartConstructor: string = 'chart'; // optional string, defaults to 'chart'
+  chartOptions: Highcharts.Options = {  }; // required
+  chartCallback: Highcharts.ChartCallbackFunction = function (chart) {  } // optional function, defaults to null
+  updateFlag: boolean = false; // optional boolean
+  oneToOneFlag: boolean = true; // optional boolean, defaults to false
+  runOutsideAngular: boolean = false;
 
 }
