@@ -13,7 +13,6 @@ export class CryptoElementComponent implements OnInit {
 
   crypto?: CryptoModel;
   asset_id?: string;
-  matchingCrypto?: CryptoModel;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,7 +23,7 @@ export class CryptoElementComponent implements OnInit {
     const currentUserJson = localStorage.getItem('currentUser');
     if(currentUserJson) {
       const currentUser: RegModel = JSON.parse(currentUserJson);
-    this.activatedRoute.paramMap.subscribe((params) => {
+      this.activatedRoute.paramMap.subscribe((params) => {
       let readParam = params.get('asset_id');
       if(readParam) {
           this.asset_id = readParam;

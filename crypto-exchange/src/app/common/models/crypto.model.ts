@@ -2,6 +2,8 @@ export interface CryptoModel {
     asset_id: string;
     name: string;
     price_usd: number;
+    data_start: string;
+    data_end: string;
 }
 
 export interface IconModel {
