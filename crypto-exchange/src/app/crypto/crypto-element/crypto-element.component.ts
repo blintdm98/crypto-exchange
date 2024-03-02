@@ -27,17 +27,17 @@ export class CryptoElementComponent implements OnInit {
       let readParam = params.get('asset_id');
       if(readParam) {
           this.asset_id = readParam;
-          // this.cryptoService.getCrypto(this.asset_id).subscribe({
-          //   next: (crypto: CryptoModel) => {
-          //     this.crypto = crypto;
+          this.cryptoService.getCrypto(this.asset_id).subscribe({
+            next: (crypto: CryptoModel) => {
+              this.crypto = crypto;
               if (currentUser && currentUser.cryptoList) {
                 this.crypto = currentUser.cryptoList.find(crypto => crypto.asset_id === this.asset_id);
               }
-          //   },
-          //   error: (error) => {
-          //     console.log(error);
-          //   }
-          // })
+            },
+            error: (error) => {
+              console.log(error);
+            }
+          })
         }
       })
   }

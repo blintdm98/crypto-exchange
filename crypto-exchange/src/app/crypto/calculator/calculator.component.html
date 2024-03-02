@@ -1,1 +1,32 @@
-<p>calculator works!</p>
+<div class="d-flex justify-content-evenly align-items-center mb-2 mt-5">
+    <div [formGroup]="calcForm" class="input-group mb-3 conainer">
+        <span #span1Ref class="input-group-text">USD</span>
+        <input 
+            id="input1" 
+            #input1Ref 
+            [(ngModel)]="defaultPriceValue" 
+            type="number" class="form-control" 
+            placeholder="5" 
+            aria-label="price"
+            formControlName="price">
+        <button 
+            class="btn-wishlist me-0 me-lg-n3" 
+            type="button"  
+            data-bs-toggle="tooltip" 
+            data-bs-placement="top" 
+            data-bs-custom-class="custom-tooltip" 
+            data-bs-title="Add to wishlist"
+            (click)="swapInputs()">
+            <i class="bi bi-arrow-left-right"></i>
+        </button>
+        <input 
+            id="input2" 
+            #input2Ref 
+            [(ngModel)]="defaultCryptoValue" 
+            type="number" class="form-control" 
+            placeholder="5" 
+            aria-label="Crypto"
+            formControlName="crypto">
+        <span #span2Ref  class="input-group-text">AUD</span>
+      </div>
+</div>

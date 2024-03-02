@@ -7,6 +7,7 @@ import { NavComponent } from '../common/nav/nav.component';
 import { CryptoElementComponent } from './crypto-element/crypto-element.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -16,12 +17,15 @@ import { HighchartsChartModule } from 'highcharts-angular';
     ChartComponent,
     CalculatorComponent,
     NavComponent,
-    CryptoElementComponent
+    CryptoElementComponent,
+    CalculatorComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CryptoModule { }

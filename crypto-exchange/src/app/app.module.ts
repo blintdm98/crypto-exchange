@@ -8,11 +8,12 @@ import { CryptoModule } from './crypto/crypto.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './common/modal/modal.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ModalComponent
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
