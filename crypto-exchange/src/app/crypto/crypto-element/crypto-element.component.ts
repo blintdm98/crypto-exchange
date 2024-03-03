@@ -27,19 +27,41 @@ export class CryptoElementComponent implements OnInit {
       let readParam = params.get('asset_id');
       if(readParam) {
           this.asset_id = readParam;
-          this.cryptoService.getCrypto(this.asset_id).subscribe({
-            next: (crypto: CryptoModel) => {
-              this.crypto = crypto;
+          // this.cryptoService.getCrypto(this.asset_id).subscribe({
+          //   next: (crypto: CryptoModel) => {
+          //     this.crypto = crypto;
               if (currentUser && currentUser.cryptoList) {
                 this.crypto = currentUser.cryptoList.find(crypto => crypto.asset_id === this.asset_id);
               }
-            },
-            error: (error) => {
-              console.log(error);
-            }
-          })
+        //     },
+        //     error: (error) => {
+        //       console.log(error);
+        //     }
+        //   })
         }
       })
+  }
+}
+
+deleteCrypto() {
+  const cryptoToDelete = this.asset_id;
+
+  if(localStorage.getItem('currentUser')) {
+    const currentUser: RegModel = JSON.parse(localStorage.getItem('currentUser')!);
+
+    if(currentUser.cryptoList) {
+      console.log(currentUser.cryptoList)
+      const indexToDelete = currentUser.cryptoList.findIndex(crypto => crypto.asset_id === cryptoToDelete);
+
+      if (indexToDelete !== -1) {
+        console.log(indexToDelete)
+        currentUser.cryptoList.splice(indexToDelete, 1);
+  
+        // Frissítsd a localStorage-t az új felhasználói adatokkal
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      }
+      console.log(currentUser.cryptoList)
+    }
   }
 }
 

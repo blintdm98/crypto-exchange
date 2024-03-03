@@ -1,9 +1,9 @@
 <app-nav></app-nav>
-<app-calculator></app-calculator>
-<div>
-    <div>{{crypto?.asset_id}}</div>
-    <div>{{crypto?.name}}</div>
-    <div>{{crypto?.price_usd}}</div>
+<div class="container">
+    <app-calculator></app-calculator>
+    <app-chart></app-chart>
+    <div class="mt-3">
+        <button class="btn btn-danger" (click)="deleteCrypto()">Delete this crypto</button>
+    </div>
 </div>
-<app-chart></app-chart>
 
