@@ -43,27 +43,39 @@ export class CalculatorComponent implements OnInit {
             if (currentUser && currentUser.cryptoList) {
               this.cryptoModel = currentUser.cryptoList.find(crypto => crypto.asset_id === this.asset_id);
               if(this.cryptoModel) {
-                setTimeout(() => {
                   this.calcForm.patchValue({
-                    price: 0,  // Kezdeti érték
-                    crypto: 0  // Kezdeti érték
+                    price: this.defaultPriceValue,
+                    crypto: this.defaultCryptoValue
                   });
-                });
                 this.defaultCryptoValue = this.defaultPriceValue * this.cryptoModel.price_usd
-                this.calcForm.valueChanges.subscribe((formValues) => {
-                  if (formValues.price !== null && formValues.crypto !== null && this.cryptoModel) {
-                    if (formValues.price !== 0) {
-                      this.calcForm.patchValue({
-                        price: formValues.price,
-                        crypto: formValues.price / this.cryptoModel.price_usd
-                      }, { emitEvent: false });
-                  } else if (formValues.crypto !== 0) {
-                    this.calcForm.patchValue({
-                      price: formValues.crypto * this.cryptoModel.price_usd,
-                      crypto: formValues.crypto
-                    }, { emitEvent: false });
-                  }
-                }
+                setTimeout(() => {
+                  this.calcForm.valueChanges.subscribe((formValues) => {
+                    if (formValues.price !== null && formValues.crypto !== null && this.cryptoModel) {
+                      if (formValues.price !== this.defaultPriceValue) {
+                        this.calcForm.patchValue({
+                          price: formValues.price,
+                          crypto: formValues.price / this.cryptoModel.price_usd
+                        }, { emitEvent: false });
+                      } else if (formValues.crypto !== this.defaultCryptoValue) {
+                        this.calcForm.patchValue({
+                          price: formValues.crypto * this.cryptoModel.price_usd,
+                          crypto: formValues.crypto
+                        }, { emitEvent: false });
+                      }
+                    } else if (formValues.crypto !== null && this.cryptoModel) {
+                      if (formValues.crypto !== this.defaultCryptoValue) {
+                        this.calcForm.patchValue({
+                          price: formValues.crypto * this.cryptoModel.price_usd,
+                          crypto: formValues.crypto
+                        }, { emitEvent: false });
+                      } else {
+                        this.calcForm.patchValue({
+                          price: this.defaultPriceValue,
+                          crypto: this.defaultCryptoValue
+                        }, { emitEvent: false });
+                      }
+                    }
+                  });
                 });
               }
             }
