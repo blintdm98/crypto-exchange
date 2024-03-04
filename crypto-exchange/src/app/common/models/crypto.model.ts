@@ -4,6 +4,12 @@ export interface CryptoModel {
     price_usd: number;
     data_start: string;
     data_end: string;
+    type_is_crypto: boolean;
+}
+
+export interface SymbolModel {
+    symbol_id: string;
+    asset_id_base: string;
 }
 
 export interface IconModel {

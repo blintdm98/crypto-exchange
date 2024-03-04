@@ -4,11 +4,16 @@
         <thead>
             <tr>
                 <th class="col">#</th>
-                <th class="col">Coin</th>
-                <th class="col">Price</th>
-                <th class="col">24h exchange</th>
-                <th class="col">Market Cap</th>
+                <th class="col">Name</th>
+                <th class="col">Price Low</th>
+                <th class="col">Price High</th>
             </tr>
         </thead>
+        <tbody *ngFor="let crypto of cryptoList">
+            <td></td>
+            <td>{{crypto.name}}</td>
+            <td>price_low</td>
+            <td>price_high</td>
+        </tbody>
     </table>
 </div>
