@@ -23,12 +23,15 @@ export class CryptoListComponent implements OnInit {
       if(localStorage.getItem('currentUser')) {
         const currentUser: RegModel = JSON.parse(localStorage.getItem('currentUser')!);
         this.cryptoList = currentUser.cryptoList;
+        //*túl sok adat érkezik, és ezért nem sikerül használjam a websocketet
+        // * mert nem kapom meg a symbol_id-t
+        //* a listámban lévő kriptókhoz tartozó symbol_id szerettem volna kinyerni
         // this.cryptoList.forEach(list => {
         //   this.cryptoService.getSymbols(list.asset_id).subscribe({
         //     next: (symbols: SymbolModel[]) => {
-        //       console.log('Symbols for', symbols.find(symbol => symbol.asset_id_base === list.asset_id));
+        //      console.log('Symbols for', symbols);
         //     },
-        //     error: (error) => {
+        //    error: (error) => {
         //       console.log(error);
         //     }
         //   })

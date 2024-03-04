@@ -40,7 +40,7 @@ export class CryptoService {
     return this.http.get<SymbolModel[]>(this.CRYPTO_SYMBOLS_URL, {params})
     // .pipe(
     //   map(symbols => symbols
-    //     .filter(symbol => symbol.asset_id_base === asset_id))
+    //     .filter(symbol => symbol.data_start === data_start))
     // );
   }
 }

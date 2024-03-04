@@ -10,6 +10,7 @@ export interface CryptoModel {
 export interface SymbolModel {
     symbol_id: string;
     asset_id_base: string;
+    data_start: string;
 }
 
 export interface IconModel {
