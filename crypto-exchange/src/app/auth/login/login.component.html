@@ -2,13 +2,14 @@
   <div class="row gx-lg-5 align-items-center mb-5 order-1">
     <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
       <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-        The best offer <br />
-        <span style="color: hsl(218, 81%, 75%)">for your business</span>
       </h1>
     </div>
     <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
       <div class="card bg-glass">
         <div class="card-body px-4 py-5 px-md-5">
+          <div class="login-header">
+            <h2 class="login-title">Login</h2>
+          </div>
           <form [formGroup]="loginForm">
             <div *ngIf="username" class="form-outline mb-4">
               <input
@@ -19,9 +20,8 @@
                 placeholder="Enter your email..."
               />
               <label for="username" class="form-label">Username</label>
-              <div *ngIf="username.invalid && username.touched" class="small text-danger">
-                <span *ngIf="username.touched">An username is required.</span>
-                <span *ngIf="username.invalid">Username is not valid.</span>
+              <div class="small text-danger">
+                <span *ngIf="username.touched && username.invalid">An username is required or it's invalid</span>
               </div>
             </div>
         
@@ -35,10 +35,16 @@
               />
               <label for="password">Password</label>
               <div
-                *ngIf="password.invalid && password.touched"
+                *ngIf="password.dirty && password.invalid"
                 class="small text-danger"
               >
                 A password is required.
+              </div>
+              <div
+                *ngIf="userLogin && userLogin.password"
+                class="small text-danger"
+              >
+                Bad password, try again
               </div>
             </div>
         
@@ -53,7 +59,6 @@
               </button>
         
             <button
-              [disabled]="loginForm.invalid"
               class="btn btn-primary btn-block mb-4 d-block mx-auto"
               id="regButton"
               type="submit"

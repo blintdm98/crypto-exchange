@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CryptoModel } from 'src/app/common/models/crypto.model';
 import { RegModel } from 'src/app/common/models/reg.model';
 import { CryptoService } from 'src/app/common/services/crypto.service';
@@ -17,6 +17,7 @@ export class CryptoElementComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private cryptoService: CryptoService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -54,11 +55,10 @@ deleteCrypto() {
       const indexToDelete = currentUser.cryptoList.findIndex(crypto => crypto.asset_id === cryptoToDelete);
 
       if (indexToDelete !== -1) {
-        console.log(indexToDelete)
         currentUser.cryptoList.splice(indexToDelete, 1);
   
-        // Frissítsd a localStorage-t az új felhasználói adatokkal
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        this.router.navigate(['/crypto-list']);
       }
       console.log(currentUser.cryptoList)
     }

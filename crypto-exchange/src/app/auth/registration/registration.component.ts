@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ParamMap, Router } from '@angular/router';
-import { CryptoModel } from 'src/app/common/models/crypto.model';
 import { RegModel } from 'src/app/common/models/reg.model';
 
 @Component({
@@ -40,20 +39,6 @@ export class RegistrationComponent {
     },
     this.confirmPasswordValidator
     );
-
-    // this.activatedRoute.paramMap.subscribe({
-    //   next: (params: ParamMap) => {
-    //     let customerId = params.get('id');
-    //     if (customerId) {
-    //       this.customerService.getCustomerWithGetDoc(customerId).subscribe({
-    //         next: (data) => {
-    //           this.customerRegForm.patchValue(data);
-    //           this.updateCustomerId = data.id;
-    //         },
-    //       });
-    //     }
-    //   },
-    // });
   }
 
   get email() {
@@ -116,28 +101,4 @@ export class RegistrationComponent {
   
     return pass === cPass ? null : { PasswordsNotMatch: true };
   }
-
-  // submitRegForm() {
-  //   if (!this.customerRegForm.invalid) {
-  //     const newCustumer: CustomerModel = this.customerRegForm.value;
-
-  //     if (this.updateCustomerId) {
-  //       newCustumer.id = this.updateCustomerId;
-  //       this.customerService.updateCustomer(newCustumer).subscribe({
-  //         complete: () => {
-  //           this.router.navigate(['customers']);
-  //         },
-  //       });
-  //     } else {
-  //       this.customerService.addCustomer(newCustumer).subscribe({
-  //         next: (docRef) => {
-  //           console.log('Customer saved with ID: ', docRef['id']);
-  //         },
-  //         error: (err) => {
-  //           console.log(err);
-  //         },
-  //       });
-  //     }
-  //   }
-  // }
 }

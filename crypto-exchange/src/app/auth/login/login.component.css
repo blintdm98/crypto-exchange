@@ -1,3 +1,5 @@
+
+
 :host {
     background-image: url('src/assets/images/bg.jpg');
     background-size: cover;
@@ -8,4 +10,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.login-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    padding: 1rem 1rem;
+}
+
+.card {
+    max-width: 30rem;
 }

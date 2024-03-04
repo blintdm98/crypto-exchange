@@ -10,9 +10,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent},
   { path: 'crypto-element/:asset_id', component: CryptoElementComponent},
-  { 
-    path: 'crypto-list', component: CryptoListComponent,
-  },
+  { path: 'crypto-list', component: CryptoListComponent },
 ];
 
 @NgModule({

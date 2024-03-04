@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import { CryptoModel } from 'src/app/common/models/crypto.model';
 import { RegModel } from 'src/app/common/models/reg.model';
@@ -10,57 +11,56 @@ import { RegModel } from 'src/app/common/models/reg.model';
 })
 export class ChartComponent implements OnInit {
 
-  currentDate?: Date;
-  startOfWeek?: Date;
-  endOfWeek?: Date;
   cryptoData?: CryptoModel;
+  asset_id?: string;
 
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    // this.getWeeklyData();
-    // console.log(this.getWeeklyData());
+    const currentUserJson = localStorage.getItem('currentUser');
+    if(currentUserJson) {
+      const currentUser:RegModel = JSON.parse(currentUserJson);
+      this.activatedRoute.paramMap.subscribe((params) => {
+        let readParam = params.get('asset_id');
+        if(readParam) {
+          this.asset_id = readParam;
+          if (currentUser && currentUser.cryptoList) {
+          this.cryptoData = currentUser.cryptoList.find(crypto => crypto.asset_id === this.asset_id);
+          if(this.cryptoData) {
+            this.getChart(this.cryptoData.name);
+          }
+          }
+      }
+    })
   }
-  // getWeeklyData(): void {
-  //   const currentUserJson = localStorage.getItem('currentUser');
-  //   if(currentUserJson) {
-  //     const currentUser: RegModel = JSON.parse(currentUserJson);
-  //     const currentDate = new Date();
-  //     const startOfWeek = new Date(currentDate);
-  //     startOfWeek.setDate(currentDate.getDate() - currentDate.getDay() + (currentDate.getDay() === 0 ? -6 : 1));
-  
-  //     // most, hogy megvan az aktuális hét kezdődátuma, kiválaszthatjuk az elmúlt heti adatokat
-  //     const lastWeekData = currentUser.cryptoList.find(data => {
-  //       const dataStartDate = new Date(data.data_start);
-  //       console.log(dataStartDate);
-  //       const dataEndDate = new Date(data.data_end);
-  //       console.log(dataEndDate);
-  //       return dataStartDate >= startOfWeek && dataEndDate <= currentDate;
-  //     });
-  //     console.log('Elmúlt heti adatok:', lastWeekData);
-  //   }
-  // }
+}
+
+  getChart(name:string) {
+    const chartOptions: Highcharts.Options = {
+      title: {
+        text: name
+      },
+      series: [
+        {
+          type: 'line',
+          data: [1, 2, 3, 4, 5],
+        },
+      ],
+    }
+
+    this.chartOptions = {...chartOptions};
+    this.updateFlag = true;
+  }
+
   Highcharts: typeof Highcharts = Highcharts;
   chartConstructor: string = 'chart';
   chartOptions: Highcharts.Options = {
-    title: {
-      text: 'My Chart',
-    },
-    series: [
-      {
-        type: 'line',
-        data: [1, 2, 3, 4, 5],
-      },
-    ],
-  };
-  chartCallback: Highcharts.ChartCallbackFunction = function (chart) {
-    // Optional callback function
-    console.log('Chart instance:', chart);
+
+
   };
   updateFlag: boolean = false;
   oneToOneFlag: boolean = true;
   runOutsideAngular: boolean = false;
-
-
-
-
 }

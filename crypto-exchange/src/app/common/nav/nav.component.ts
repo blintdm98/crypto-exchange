@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
   isModalOpen = false;
-  subCrypto?: Subscription;
   cryptoList: CryptoModel[] = [];
   navList: CryptoModel[] = [];
 
@@ -26,21 +25,6 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
     this.getNavList();
   }
-
-  // getCryptos() {
-  //   this.subCrypto = this.cryptoService.getCryptos().subscribe({
-  //     next: (cryptos: CryptoModel[]) => {
-  //       this.cryptoList = cryptos;
-  //       console.log(cryptos);
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //     complete: () => {
-  //       console.log('Crypto request is done');
-  //     }
-  //   });
-  // }
 
   addCrypto(choosenCrypto: CryptoModel){
     const currentUserJson = localStorage.getItem('currentUser');
@@ -73,7 +57,7 @@ export class NavComponent implements OnInit {
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         localStorage.setItem('allUsers', JSON.stringify(allUsers));
         this.getNavList();
-
+        this.closeModal();
         console.log(`${choosenCrypto.name} added to cryptoList`);
       } else {
         console.error('User or users not found in localStorage');
@@ -83,7 +67,7 @@ export class NavComponent implements OnInit {
   openModal() {
     this.isModalOpen = true;
     this.renderer.setStyle(this.elRef.nativeElement.querySelector('.modal'), 'display', 'block');
-    this.subCrypto = this.cryptoService.getCryptos().subscribe({
+    this.cryptoService.getCryptos().subscribe({
       next: (cryptos: CryptoModel[]) => {
         this.cryptoList = cryptos;
         console.log(cryptos);
@@ -95,12 +79,6 @@ export class NavComponent implements OnInit {
         console.log('Crypto request is done');
       }
     });
-
-    //*mock adatokhoz
-    // for(const crypto of cryptos) {
-    //   this.cryptoList.push(crypto);
-    //   console.log(crypto);
-    // }
   }
 
   closeModal() {
@@ -119,5 +97,10 @@ export class NavComponent implements OnInit {
         this.navList = [...currentUser.cryptoList];
       }
     }
+  }
+
+  logout() {
+    localStorage.setItem('currentUser', JSON.stringify({}));
+    this.router.navigate(['/login']);
   }
 }

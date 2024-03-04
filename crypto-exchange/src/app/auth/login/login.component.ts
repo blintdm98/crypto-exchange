@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginModel } from 'src/app/common/models/login.model';
 import { RegModel } from 'src/app/common/models/reg.model';
@@ -12,10 +12,10 @@ import { RegModel } from 'src/app/common/models/reg.model';
 export class LoginComponent {
 
   loginForm!: FormGroup;
+  userLogin!: LoginModel;
 
   constructor(
     private router: Router,
-    // private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -37,14 +37,14 @@ export class LoginComponent {
   }
 
   login() {
-    const storedUsers = JSON.parse(localStorage.getItem('allUsers')!) || [];
-    const userLogin: LoginModel = {
+    const storedUsers = JSON.parse(localStorage.getItem('allUsers')!) || [];    
+    this.userLogin = {
       username: this.username?.value,
       password: this.password?.value,
     }
 
     const existingUser = storedUsers.find((user:RegModel) => {
-      return user.name === userLogin.username && user.password === userLogin.password
+      return user.name === this.userLogin.username && user.password === this.userLogin.password
     })
 
     if(existingUser) {
@@ -74,6 +74,7 @@ export class LoginComponent {
   // public registration() {
   //   this.authService.registration(this.loginForm.value).subscribe();
   // }
+  
   public registration() {
     this.router.navigate(['registration']);
   }

@@ -1,16 +1,18 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">BRAHMAN</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
           <li class="nav-item" *ngFor="let crypto of navList">
             <a class="nav-link active" aria-current="page" [routerLink]="['/crypto-element', crypto.asset_id]">{{crypto.name}}</a>
           </li>
           <li class="nav-item">
-            <button class="btn" (click)="openModal()">+</button>
+            <button class="btn-wishlist me-0 me-lg-n3 mt-1" (click)="openModal()">
+              <i class="bi bi-plus-lg"></i>
+            </button>
             <div class="modal fade show">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -41,6 +43,7 @@
             </div>
           </li>
         </ul>
+        <button type="button" class="btn btn-secondary" (click)="logout()">Logout</button>
       </div>
     </div>
   </nav>

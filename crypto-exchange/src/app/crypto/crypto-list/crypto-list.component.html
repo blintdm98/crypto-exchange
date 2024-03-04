@@ -1,6 +1,6 @@
-<div class="container">
+<div>
     <app-nav></app-nav>
-    <table class="table table-striped">
+    <table class="table table-striped container mt-5">
         <thead>
             <tr>
                 <th class="col">#</th>
@@ -9,8 +9,8 @@
                 <th class="col">Price High</th>
             </tr>
         </thead>
-        <tbody *ngFor="let crypto of cryptoList">
-            <td></td>
+        <tbody *ngFor="let crypto of cryptoList, index as i">
+            <td>{{i+1}}</td>
             <td>{{crypto.name}}</td>
             <td>price_low</td>
             <td>price_high</td>
