@@ -101,3 +101,7 @@
     font-size: 1.5rem;
     line-height: 1.75rem;
   }
+
+  tbody > td:nth-child(1), tbody > td:nth-child(2) {
+    cursor:pointer;
+  }

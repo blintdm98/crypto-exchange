@@ -32,9 +32,9 @@
                                 </tr>
                               </thead>
                               <tbody *ngFor="let crypto of cryptoList">
-                                <th (click)="addCrypto(crypto)">{{crypto.asset_id}}</th>
-                                <th (click)="addCrypto(crypto)">{{crypto.name}}</th>
-                                <th>{{crypto.price_usd}}</th>
+                                <td (click)="addCrypto(crypto)">{{crypto.asset_id}}</td>
+                                <td (click)="addCrypto(crypto)">{{crypto.name}}</td>
+                                <td>{{crypto.price_usd}}</td>
                               </tbody>
                             </table>
                           </div>

@@ -47,20 +47,27 @@ export class CryptoElementComponent implements OnInit {
 deleteCrypto() {
   const cryptoToDelete = this.asset_id;
 
-  if(localStorage.getItem('currentUser')) {
+  if (localStorage.getItem('currentUser') && localStorage.getItem('allUsers')) {
     const currentUser: RegModel = JSON.parse(localStorage.getItem('currentUser')!);
+    let allUsers: RegModel[] = JSON.parse(localStorage.getItem('allUsers')!);
 
-    if(currentUser.cryptoList) {
-      console.log(currentUser.cryptoList)
+    if (currentUser.cryptoList) {
       const indexToDelete = currentUser.cryptoList.findIndex(crypto => crypto.asset_id === cryptoToDelete);
 
       if (indexToDelete !== -1) {
         currentUser.cryptoList.splice(indexToDelete, 1);
-  
+
+        allUsers = allUsers.map(user => {
+          if (user.email === currentUser.email) {
+            return currentUser;
+          }
+          return user;
+        });
+
+        localStorage.setItem('allUsers', JSON.stringify(allUsers));
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         this.router.navigate(['/crypto-list']);
       }
-      console.log(currentUser.cryptoList)
     }
   }
 }
